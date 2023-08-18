@@ -1,0 +1,32 @@
+p.verso{
+    color: blue;
+}
+
+a:link{
+    text-decoration: none;
+    color: black;
+}
+
+a:visited{
+    color: red;
+    
+}
+
+a:hover {
+	text-decoration: underline;
+	color: green
+	}
+a:active {
+	text-decoration: none;
+    color: brown;
+    
+}
+
+img {
+  border-radius: 50%;
+  width: 10%;
+}
+
+div{
+    border-radius: 50%;
+}
