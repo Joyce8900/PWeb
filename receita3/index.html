@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+      <style> 
+         #myDIV {
+         border: 1px solid black;
+         background-color: lightblue;
+         width: 150px;
+         height: 150px;
+         overflow: auto;
+         }
+
+         #myDIV:hover {
+         background-color: coral;
+         width: 150px;
+         height: 150x;
+         font-size: 15px;
+         border: 1px solid black;
+         border-radius: 100%;
+         text-align: center;
+         }
+      </style>
+</head>
+
+   
+
+   <body>
+
+      <div id="meu amor">
+         Carregando cervejas...
+      </div>   
+      <div>
+         
+         <button id="botaoCarregar">
+            Clique aqui!
+         </button>
+         
+      </div>        
+      <div id="myDIV">
+       <h1>myDIV</h1>
+      </div>
+
+   </body>   
+
+   
+
+   <script>
+
+      var conteudo = 'Guiness'
+      function carregarDiv(){
+
+         let div = document.getElementById("meu amor")
+
+         div.innerHTML = `<h1>${conteudo}</h1>`
+
+         if (conteudo === 'Guiness') conteudo = ""
+         else (conteudo = 'Guiness')
+
+      }
+      
+
+      
+
+      let botao = document.getElementById("botaoCarregar")
+
+      botao.addEventListener("click", carregarDiv)       
+      
+
+   </script>
+
+</html>
