@@ -45,11 +45,11 @@
 
     let cervejas = ["Guiness", "Desperados", "Becks","Itaipava","Bahma", "Corona"]
                 
-    const carregarDiv=(cervs)=>{
+    const carregarDiv=()=>{
 
         const div = document.getElementById("meu amor")
 
-        const cervejasHtml = cervs.map( item => `<h1>${item}</h1>` ) 
+        const cervejasHtml = cervejas.map( item => `<h1>${item}</h1>` ) 
 
         div.innerHTML = `${cervejasHtml.join("\n")}`
 
@@ -57,7 +57,7 @@
     const exibirOrdenado =()=>{
         let ordem = cervejas.sort()
          let div = document.getElementById("meu amor")
-         let ordemHTML = ordem.sort()
+         let ordemHTML = ordem.map(item => `<h1>${item}</h1>`)
 
          div.innerHTML = `${ordemHTML.join("\n")}`
 
@@ -66,7 +66,7 @@
       const exibirNinhoDeGato = ()=>{
          let embaralhar = cervejas.sort(() => Math.random() - 0.5);
          let div = document.getElementById("meu amor")
-         let embaralharHTML = embaralhar
+         let embaralharHTML = embaralhar.map(item => `<h1>${item}</h1>`)
 
          div.innerHTML = `${embaralharHTML.join("\n")}`
 
