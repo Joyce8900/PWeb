@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+
+      <meta charset="UTF-8">      
+      <style>
+         /*Questão 2, estilizar as div!
+          #styleC{
+            border: 1px;
+            color: black;
+            font-weight: 100;
+            font-size: 14px;
+            padding: 50px;
+            margin: 15px;
+            text-align: center;
+         } */
+         #styleC{
+            border: 1px;
+            color: black;
+            font-size: 15px;
+            margin: 5px;
+
+         }
+      </style>
+   </head>
+
+   
+
+   <body>
+
+      <div id="meu amor">
+         <button id="botaoCarregar">Carregando cervejas... </button>
+         <button id="botaoOrdenar">Cervejas em Ordem</button>
+         <button id="botaoEmbaralhar">Cervejas Embaralhada</button>
+   </div>         
+         
+
+   </body>   
+
+   
+
+   <script>
+
+    let cervejas = ["Guiness", "Desperados", "Becks","Itaipava","Bahma", "Corona"]
+                
+    const carregarDiv=(cervs)=>{
+
+        const div = document.getElementById("meu amor")
+
+        const cervejasHtml = cervs.map( item => `<h1>${item}</h1>` ) 
+
+        div.innerHTML = `${cervejasHtml.join("\n")}`
+
+      }
+    const exibirOrdenado =()=>{
+        let ordem = cervejas.sort()
+         let div = document.getElementById("meu amor")
+         let ordemHTML = ordem.sort()
+
+         div.innerHTML = `${ordemHTML.join("\n")}`
+
+      }
+
+      const exibirNinhoDeGato = ()=>{
+         let embaralhar = cervejas.sort(() => Math.random() - 0.5);
+         let div = document.getElementById("meu amor")
+         let embaralharHTML = embaralhar
+
+         div.innerHTML = `${embaralharHTML.join("\n")}`
+
+      }
+       
+      let botao = document.getElementById("botaoCarregar")
+      let botao2 = document.getElementById("botaoOrdenar")
+      let botao3 = document.getElementById("botaoEmbaralhar")
+
+      
+      botao.addEventListener("click", carregarDiv)  
+      botao2.addEventListener("click",exibirOrdenado)        
+      botao3.addEventListener("click",exibirNinhoDeGato)      
+
+   </script>
+
+</html>
