@@ -6,17 +6,7 @@
 
       <meta charset="UTF-8">      
       <style>
-         /*Questão 2, estilizar as div!
-          #styleC{
-            border: 1px;
-            color: black;
-            font-weight: 100;
-            font-size: 14px;
-            padding: 50px;
-            margin: 15px;
-            text-align: center;
-         } */
-         #styleC{
+        #styleC{
             border: 1px;
             color: black;
             font-size: 15px;
@@ -31,9 +21,9 @@
    <body>
 
       <div id="meu amor">
-         <button id="botaoCarregar">Carregando cervejas... </button>
-         <button id="botaoOrdenar">Cervejas em Ordem</button>
-         <button id="botaoEmbaralhar">Cervejas Embaralhada</button>
+         <a id="botaoCarregar" href=".">Carregando cervejas... </a>
+         <a id="botaoOrdenar" href=".">Cervejas em Ordem</a>
+         <a id="botaoEmbaralhar"href=".">Cervejas Embaralhada</a>
    </div>         
          
 
@@ -45,11 +35,11 @@
 
     let cervejas = ["Guiness", "Desperados", "Becks","Itaipava","Bahma", "Corona"]
                 
-    const carregarDiv=()=>{
+    const carregarDiv=(cervs)=>{
 
         const div = document.getElementById("meu amor")
 
-        const cervejasHtml = cervejas.map( item => `<h1>${item}</h1>` ) 
+        const cervejasHtml = cervs.map( item => `<h1>${item}</h1>` ) 
 
         div.innerHTML = `${cervejasHtml.join("\n")}`
 
@@ -72,14 +62,22 @@
 
       }
        
-      let botao = document.getElementById("botaoCarregar")
-      let botao2 = document.getElementById("botaoOrdenar")
-      let botao3 = document.getElementById("botaoEmbaralhar")
+      let link1 = document.getElementById("botaoCarregar")
+      let link2 = document.getElementById("botaoOrdenar")
+      let link3 = document.getElementById("botaoEmbaralhar")
 
       
-      botao.addEventListener("click", carregarDiv)  
-      botao2.addEventListener("click",exibirOrdenado)        
-      botao3.addEventListener("click",exibirNinhoDeGato)      
+      link1.addEventListener("click",  (e) => {
+         e.preventDefault()
+         carregarDiv(cervejas)
+      } )  
+      link2.addEventListener("click", (e) => {
+         e.preventDefault()
+         exibirOrdenado()})        
+      link3.addEventListener("click", (e) => {
+         e.preventDefault()
+         exibirNinhoDeGato()
+      })      
 
    </script>
 
