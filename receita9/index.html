@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReactZero</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.1/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.1/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        const cachacas = [
+            {
+                "nome": "Havana",
+                "marca": "Engenho Anísio Santiago",
+                "teorAlcoolico": "40%",
+                "origem": "Pernambuco, Brasil"
+            },
+            {
+                "nome": "Ypióca",
+                "marca": "Ypióca",
+                "teorAlcoolico": "39%",
+                "origem": "Ceará, Brasil"
+            },
+            {
+                "nome": "51",
+                "marca": "Companhia Müller de Bebidas",
+                "teorAlcoolico": "39%",
+                "origem": "Rio Grande do Sul, Brasil"
+            },
+            {
+                "nome": "Leblon",
+                "marca": "Leblon Cachaça",
+                "teorAlcoolico": "40%",
+                "origem": "Minas Gerais, Brasil"
+            }
+        ];
+
+        function TabelaBebidas() {
+            return (
+                <div>
+                    <h1>Tabela de Cachaças</h1>
+                    <table border="1" style={{ borderCollapse: "collapse", width: "100%" }}>
+                        <thead>
+                            <tr>
+                                <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>Nome</th>
+                                <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>Marca</th>
+                                <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>Teor Alcoólico</th>
+                                <th style={{ border: "1px solid #ddd", padding: "8px", backgroundColor: "#f2f2f2" }}>Origem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cachacas.map((cachaca, index) => (
+                                <tr key={index}>
+                                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>{cachaca.nome}</td>
+                                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>{cachaca.marca}</td>
+                                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>{cachaca.teorAlcoolico}</td>
+                                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>{cachaca.origem}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <TabelaBebidas />,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>

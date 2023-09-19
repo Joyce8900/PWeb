@@ -1,80 +1,77 @@
 <!DOCTYPE html>
+<html>
 
-<html>   
+<head>
+   <meta charset="UTF-8">
+</head>
 
-   <head>
-
-      <meta charset="UTF-8">      
-
-   </head>
-
-
-
-   <body>
-
-      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
-
-      <div id="cervejasDiv"></div>            
-
-   </body>   
-
+<body>
+   <button id="botaoCarregar">Carregando cervejas...</button>
+   <table id="cervejasTable" style="display: none;">
+      <thead>
+         <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Teor Alcoólico</th>
+         </tr>
+      </thead>
+      <tbody id="cervejasBody"></tbody>
+   </table>
    
-
    <script>
-
-
-
       let cervejas = [
-
          {
-
-            name: "Guiness",   
-            preco : 15.0,   
-            alcool: "15%"  ,     
-
-         }, 
-
+            nome: "Guinness",
+            preco: 15.0,
+            alcool: "15%",
+         },
          {
-
-            name: "Desperados",      
-            preco: 19.99,    
-            alcool: "20%"   ,
-
-         }, 
-
+            nome: "Desperados",
+            preco: 19.99,
+            alcool: "20%",
+         },
          {
+            nome: "Becks",
+            preco: 17.99,
+            alcool: "40%",
+         },
+      ];
 
-            name: "Becks",
-            preco: 17.99,  
-            alcool: "40%"       
+      let tabelaVisivel = false;
 
+      const alternarVisibilidadeTabela = () => {
+         const tabela = document.getElementById("cervejasTable");
+         tabelaVisivel = !tabelaVisivel;
+
+         if (tabelaVisivel) {
+            tabela.style.display = "table";
+            carregarTabela(cervejas);
+         } else {
+            tabela.style.display = "none";
          }
+      };
 
-      ]
+      const carregarTabela = (cs) => {
+         const tbody = document.getElementById("cervejasBody");
+         tbody.innerHTML = "";
 
-    
-    
+         cs.forEach((item) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+               <td>${item['nome']}</td>
+               <td>${item['preco']}</td>
+               <td>${item["alcool"]}</td>
+            `;
+            tbody.appendChild(row);
+         });
+      };
 
-      //cs é um array de cervejas
-
-      const carregarDiv = cs => {
-
-         const div = document.getElementById("cervejasDiv")
-
-         const itensHtml = cs.map( item => `<div>${item['name']} -- ${item['preco']} -- ${item["alcool"]}</div>` ) 
-
-         div.innerHTML = `${itensHtml.join("\n")}`
-
-      }
-
-
-
-      let botao = document.getElementById("botaoCarregar")
-
-      botao.addEventListener("click", () => carregarDiv(cervejas) )                 
-
-
-
+      let botao = document.getElementById("botaoCarregar");
+      botao.addEventListener("click", () => {
+         alternarVisibilidadeTabela();
+         carregarTabela(cervejas);
+      });
    </script>
+</body>
 
 </html>
