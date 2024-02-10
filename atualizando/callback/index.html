@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html>
+<html>   
+   <head>
+      <meta charset="UTF-8">      
+      <link rel="stylesheet" href="style.css">
+   </head>
+   
+   <body>
+      <div id="meuAmor"> 
+        <a id="botaoCarregar">Carregando cervejas...</a>
+        <a id="botaoOrdenar">Carregando cervejas em ordem</a>
+        <a id="botaoEmbaralhar">Carregando cervejas embaralhadas</a>
+    </div>             
+   </body>   
+   
+   <script>
+      const carregarDiv = (cervejas) => {
+         const div = document.getElementById("meuAmor");
+         const cervejasHtml = cervejas.map(item => `<h1>${item}</h1>`);
+         div.innerHTML = cervejasHtml.join("\n");
+      };
+      const ordenarCervejas =(cervejas)=>{
+        const div = document.getElementById('meuAmor');
+        const cervejasOrdem = cervejas.slice().sort(); 
+        let cervejasHtml = cervejasOrdem.map(item=>`<h1>${item}</h1>`);
+        div.innerHTML = cervejasHtml.join("\n");
+      }
+      const embaralhar= (cervejas)=>{
+         let embaralhar = cervejas.sort(() => Math.random() - 0.5);
+         const div = document.getElementById('meuAmor');
+         let embaralharHtml = embaralhar.map(item => `<h1>${item}</h1>`);
+         div.innerHTML = embaralharHtml.join("\n");
+
+      }
+
+      let botaoCarregar = document.getElementById("botaoCarregar");
+      botaoCarregar.addEventListener("click", () => carregarDiv(["Guiness", "Desperados", "Becks"]));
+
+      let botaoOrdenar = document.getElementById('botaoOrdenar');
+      botaoOrdenar.addEventListener('click', ()=>ordenarCervejas(["Guiness", "Desperados", "Becks"]));
+      
+      let botaoEmbaralhar = document.getElementById('botaoEmbaralhar');
+      botaoEmbaralhar.addEventListener('click', ()=>embaralhar(["Guiness", "Desperados", "Becks"]))
+   </script>
+</html>

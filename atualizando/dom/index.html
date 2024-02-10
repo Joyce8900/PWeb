@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+
+      <meta charset="UTF-8">      
+      <link rel="stylesheet" href="style.css">
+
+   </head>
+
+   
+
+   <body>
+
+    <div id="meu amor">Carregando cervejas...</div>            
+    <button id="botaoCarregar">Clique aqui</button>
+    <div class="mydiv">Div exemplo3</div>
+   </body>   
+
+   
+
+   <script>
+      let conteudo = 'Guinness'
+      function carregarDiv(){
+        
+        let div = document.getElementById("meu amor")
+
+        div.innerHTML = `<h1>${conteudo}</h1>`
+        
+        let botao = document.getElementById("botaoCarregar")
+        if (conteudo === 'Guinness') conteudo = ''
+        else (conteudo='Guinness')
+      }
+
+      
+     
+       let botao = document.getElementById("botaoCarregar")
+
+        botao.addEventListener("click", carregarDiv)           
+
+   </script>
+
+</html>

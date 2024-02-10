@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>   
+<head>
+    <meta charset="UTF-8">      
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button id="botaoCarregar">Carregando cervejas...</button>
+     <div id="resultado"></div>          
+</body>   
+
+<script>
+    let cervejas = [
+            {
+                name: "Guiness", 
+                alcohol: "10%",
+                style: "Imperial Stout",
+                ibu: "50"            
+            }, 
+            {
+                name: "Desperados",
+                alcohol: "6%",
+                style: "Lager",
+                ibu: "30"             
+            }, 
+            {
+                name: "Becks",
+                alcohol: "5%",
+                style: "Pilsen",
+                ibu: "25"             
+            }
+        ]
+
+        const carregarDiv = (cs, divId = "cervejasDiv", colunas = ["name", "alcohol", "style", "ibu"]) => {
+            const div = document.getElementById(divId);
+            const tabelaHtml = `
+                <table>
+                    <thead>
+                        <tr>
+                            ${colunas.map(col => `<th>${col.charAt(0).toUpperCase() + col.slice(1)}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cs.map(cerveja => `
+                            <tr>
+                                ${colunas.map(prop => `<td>${cerveja[prop]}</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            div.innerHTML = tabelaHtml;
+        };
+
+        let botao = document.getElementById("botaoCarregar");
+        botao.addEventListener("click", () => carregarDiv(cervejas, "resultado"));    
+</script>
+</html>

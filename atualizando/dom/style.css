@@ -1,0 +1,22 @@
+.mydiv{
+    width: 70px;
+    height: 40px;
+    border: 1px solid black;
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.mydiv:hover{
+    width: 70px;
+    height: 40px;
+    border: 1px solid red;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 10px;
+    transition: 1s;
+}
