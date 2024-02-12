@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>   
+
+   <head>
+
+      <meta charset="UTF-8">      
+      <link rel="stylesheet" href="style.css">
+
+   </head>
+
+
+
+   <body>
+
+      <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+
+      <div id="cervejasDiv"></div>            
+      <button id="botaoCarregarDadosF" > Carregando Dados Fincanceiros</button>
+      <div id="financasDiv"></div>
+
+   </body>   
+
+   
+
+   <script>
+
+
+
+      let cervejas = []
+      let dados = []
+      
+
+      //cs é um array de cervejas
+
+      const carregarDiv = cs => {
+
+         const div = document.getElementById("cervejasDiv")
+
+         const itensHtml = cs.map( ({name,alcohol, ibu, style}) => `<div>${name} -- ${alcohol} -- ${ibu} -- ${style}</div>` ) 
+
+         div.innerHTML = `${itensHtml.join("\n")}`
+
+      }
+
+      const carregarDivF = dados =>{
+         const tabela = document.createElement('table');
+         const cabecalho = tabela.createTHead();
+         const linhaCabecalho = cabecalho.insertRow();
+         const cabecalho1 = linhaCabecalho.insertCell();
+         const cabecalho2 = linhaCabecalho.insertCell();
+         cabecalho1.innerText = 'Número da Conta';
+         cabecalho2.innerText = 'Nome do Banco';
+
+         const corpo = tabela.createTBody();
+         dados.forEach(({ account_number, bank_name }) => {
+            const linha = corpo.insertRow();
+            const celula1 = linha.insertCell();
+            const celula2 = linha.insertCell();
+            celula1.innerText = account_number;
+            celula2.innerText = bank_name;
+         });
+
+         const div = document.getElementById('financasDiv');
+         div.innerHTML = '';
+         div.appendChild(tabela);
+      }
+
+      
+
+      // async function carregarCervejas(){
+
+      //    try{
+
+      //       let res = await fetch("https://random-data-api.com/api/v2/beers?size=3")
+
+      //       cervejas = await res.json()
+
+      //       carregarDiv(cervejas)
+
+      //    }catch(err){
+
+      //       document.getElementById("cervejasDiv").innerHTML = "Fudeu..."
+
+      //    }
+
+      // }
+
+            
+
+      function carregarCervejas2(){
+
+         fetch("https://random-data-api.com/api/v2/beers?size=3").then(
+
+            res => res.json()
+
+         ).then( 
+
+            json => carregarDiv(json) 
+
+         ).catch(
+
+            err => document.getElementById("cervejasDiv").innerHTML = `Fudeu... ${err}`
+
+         )
+
+         document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`          
+
+      }
+
+      function carregarDados() {
+            document.getElementById('financasDiv').innerHTML = 'Fazendo requisição'; // Movido para dentro da cadeia de promessas
+
+            fetch('https://random-data-api.com/api/v2/banks?size=3')
+               .then(res => res.json())
+               .then(json => {
+                  carregarDivF(json);
+               })
+               .catch(err => {
+                  document.getElementById('financasDiv').innerHTML = `Fudeu... ${err}`;
+               });
+         }
+
+
+      
+
+      let botao = document.getElementById("botaoCarregar")
+
+      botao.addEventListener("click", () => carregarCervejas2() )                 
+
+      let botaoF = document.getElementById('botaoCarregarDadosF')
+      botaoF.addEventListener('click',()=>carregarDados())
+
+      
+
+   </script>
+
+</html>

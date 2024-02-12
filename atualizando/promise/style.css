@@ -1,0 +1,40 @@
+rvejasDiv {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    border: 1px solid black;
+
+}
+
+#cervejasDiv div{
+   
+    padding: 10px;
+}
+.opcao1{
+    margin: 25px
+}
+
+.opcao2{
+    margin: 25px;
+}
+
+body{
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+
+#financasDiv{
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    border: 1px solid black;
+}
