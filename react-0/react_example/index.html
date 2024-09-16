@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>ReactZero</title>
+
+</head>
+
+<body>
+
+    <div id="app">
+
+
+
+    </div>
+
+    <script src="libs/react.js"></script>
+
+    <script src="libs/react-dom.js"></script>
+
+
+
+    <script>
+//         ReactDOM.render(
+
+//         React.createElement(
+
+//    'h1',
+
+//    {id: 'my-heading'},
+
+//    React.createElement(
+
+//       'span',
+
+//       null,
+
+//       'React ',
+
+//       React.createElement('em', null, 'é muito'),
+
+//    ),
+
+//    ' massa!'
+
+// ),
+
+//         document.getElementById('app')
+
+// );
+
+         ReactDOM.render(
+
+            React.createElement(
+
+               'table',
+
+               {id: 'tabela', border:'1', with:"50%"},
+               
+
+               React.createElement(
+
+                  'tr',
+
+                  null,                  
+
+                  React.createElement('th', null, 'Cidade'),
+
+                  React.createElement('th', null, 'Estado'),
+
+                  React.createElement("th",null, "País")
+
+               ),React.createElement(
+                "tbody",null,
+               
+
+
+               React.createElement(
+
+                  'tr',
+
+                  null,                  
+
+                  React.createElement('td', null, 'Jucurutu'),
+                  React.createElement('td', null, 'RN'),
+                  React.createElement("td", null, "Brasil")
+               ),
+               React.createElement(
+                    "tr",null,
+                    React.createElement('td', null, 'Caico'),
+                    React.createElement('td', null, 'RN'),
+                    React.createElement("td",null, "Brasil")
+               ),
+               React.createElement(
+                    "tr",null,
+                    React.createElement('td', null, 'Natal'),
+                    React.createElement('td', null, 'RN'),
+                    React.createElement("td",null, "Brasil")
+               ),
+    )
+               
+
+            ),
+
+            document.getElementById("app"))
+        
+    </script>
+
+</body>
+
+</html>
