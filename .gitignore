@@ -2,19 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,web
 
 ### Web ###
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.wasm
-*.wat
-*.xhtml
+
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -22,10 +10,12 @@ Thumbs.db
 Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
-
+.vscode
 # Dump file
 *.stackdump
-
+react-dom.js
+babel.js
+react.js
 # Folder config file
 [Dd]esktop.ini
 
