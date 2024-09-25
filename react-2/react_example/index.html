@@ -1,83 +1,128 @@
 <!DOCTYPE html>
+
 <html>
-<head>
-    <title>ReactZero</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <div id="app"></div>
+   <head>
 
-    <script src="libs/react.js"></script>
-    <script src="libs/react-dom.js"></script>
-    <script src="libs/babel.js"></script>
-    <script type="text/babel">
-    
+      <title>ReceitaReact - 2</title>      
 
-        const bebidas = [
-            { nome: "Havana", marca: "Engenho Anísio Santiago", preco: 120 },
-            { nome: "Jack Daniel's", marca: "Brown-Forman", preco: 150 },
-            { nome: "Chivas Regal", marca: "Pernod Ricard", preco: 200 }
-        ];
+   </head>
 
-        const Cabecalho = () => {
+   <body>
+
+      <div id="app">
+
+      
+
+      </div>
+
+
+
+      <script src="libs/react.js"></script>
+
+      <script src="libs/react-dom.js"></script>
+
+      <script src="libs/babel.js"></script>
+
+            
+
+      <script type="text/babel">
+
+      
+        const nome = "Tabela de Canas"
+         class TabelaBebidas extends React.Component{
+
+
+
+            render(){
+
+               return (
+
+                  <div>
+
+                     <table id="tabela" border="1">
+
+                        <thead>
+
+                           <tr><th>Nome</th><th>Marca</th></tr>
+
+                        </thead>
+
+                        <tbody>
+
+                           <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+
+                        </tbody>
+
+                     </table>
+
+                 </div> 
+
+               )
+
+            }
+
+
+
+         }
+         class Title extends React.Component{
+            render(){
+                return(
+                    <h1>{this.props.title}</h1>
+                )
+            }
+         }
+
+
+            
+
+         const TabelaBebidas__ = () => {
+
             return (
-                <h1>Minha tabela de bebidas</h1>
-            );
-        };
 
-        const TabelaBebidas = () => {
-            return (
-                <table id="tabela" border="1">
-                    <thead>
-                        <tr>
-                            <th>Nome</th><th>Marca</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {bebidas.map((bebida, index) => (
-                            <tr key={index}>
-                                <td>{bebida.nome}</td>
-                                <td>{bebida.marca}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            );
-        };
+               <div>
 
-        const TabelaComUseState = () => {
-            const [alcool, setAlcool] = React.useState(false); 
+                  <h1>Tabela de Bebidas</h1>
 
-            const modelo = () => {
-                setAlcool(!alcool);
-            };
+                  <table id="tabela" border="1">
 
-            return (
-                <div>
-                    {alcool ? (
-                        <div>
-                            <Cabecalho />
-                            <TabelaBebidas />
-                            <button onClick={modelo}>Voltar</button>
-                        </div>
-                    ) : (
-                        <div>
-                            <Cabecalho />
-                            <button onClick={modelo}>Mostrar Tabela</button>
-                        </div>
-                    )}
-                </div>
-            );
-        };
+                     <thead>
 
-        ReactDOM.render(
+                        <tr><th>Nome</th><th>Marca</th></tr>
+
+                     </thead>
+
+                     <tbody>
+
+                        <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+
+                     </tbody>
+
+                  </table>
+
+               </div>
+
+            )  
+
+         }
+
+         
+
+         ReactDOM.render(
             <div>
-                <TabelaComUseState />
+                <Title title={nome}/>,
+                <TabelaBebidas/>
             </div>,
-            document.getElementById("app")
-        );
+            
 
-    </script>
-</body>
+            
+
+            document.getElementById("app"))
+
+
+
+      </script>
+
+   </body>
+
 </html>
