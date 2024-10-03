@@ -18,17 +18,17 @@ babel.js
 react.js
 # Folder config file
 [Dd]esktop.ini
-
+package-lock.json
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-
+.json
 # Windows Installer files
 *.cab
 *.msi
 *.msix
 *.msm
 *.msp
-
+package.json
 # Windows shortcuts
 *.lnk
 
