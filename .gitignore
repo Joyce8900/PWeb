@@ -21,7 +21,7 @@ react.js
 package-lock.json
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-.json
+
 # Windows Installer files
 *.cab
 *.msi

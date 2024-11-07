@@ -25,7 +25,7 @@ const listar = () => {
 
       // Corpo da tabela
       const tbody = document.createElement("tbody");
-      data.forEach((item,index) => {
+      data.forEach((item) => {
         
         const row = document.createElement("tr");
         row.innerHTML = `
