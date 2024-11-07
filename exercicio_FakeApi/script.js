@@ -1,8 +1,9 @@
-let contador = 0
+
 const listar = () => {
-  
+  const numeroDeElementos = parseInt(document.getElementById
+  ("numeroDeItens").value) || 1; 
   const resultado = document.getElementById("resultado");
-  resultado.innerHTML = ""; // Limpa o conteúdo anterior
+  resultado.innerHTML = "";
 
   fetch(`https://api.escuelajs.co/api/v1/products`, {
     method: "GET",
@@ -13,7 +14,7 @@ const listar = () => {
       const table = document.createElement("table");
       table.classList.add("table", "table-striped");
       const thead = document.createElement("thead");
-      
+
       thead.innerHTML = `
         <tr>
           <th>Produto</th>
@@ -23,10 +24,10 @@ const listar = () => {
       `;
       table.appendChild(thead);
 
-      // Corpo da tabela
+
       const tbody = document.createElement("tbody");
-      data.forEach((item) => {
-        
+      data.slice(0,numeroDeElementos).forEach((item) => {
+
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${item.title}</td>
@@ -37,10 +38,10 @@ const listar = () => {
       });
 
       table.appendChild(tbody);
-  
-      resultado.appendChild(table); // Adiciona a tabela ao elemento resultado
-    
-      })
+
+      resultado.appendChild(table);
+
+    })
     .catch((error) => {
       console.error("Erro ao buscar dados:", error);
       resultado.innerHTML = "Erro ao buscar dados.";
