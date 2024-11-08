@@ -1,5 +1,5 @@
 
-const listar = () => {
+const  filtrar= () => {
   const numeroDeElementos = parseInt(document.getElementById
   ("numeroDeItens").value) || 1; 
   const resultado = document.getElementById("resultado");
