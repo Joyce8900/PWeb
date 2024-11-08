@@ -1,11 +1,10 @@
-
-const  filtrar= () => {
+const filtrar = () => {
   const numeroDeElementos = parseInt(document.getElementById
-  ("numeroDeItens").value) || 1; 
+    ("numeroDeItens").value) || 1;
   const resultado = document.getElementById("resultado");
   resultado.innerHTML = "";
 
-  fetch(`https://api.escuelajs.co/api/v1/products`, {
+  fetch(`https://fakerapi.it/api/v2/products?_quantity=${numeroDeElementos}`, {
     method: "GET",
   })
     .then((response) => response.json())
@@ -26,17 +25,19 @@ const  filtrar= () => {
 
 
       const tbody = document.createElement("tbody");
-      data.slice(0,numeroDeElementos).forEach((item) => {
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${item.title}</td>
-          <td>${item.price}</td>
-          <td>${item.description}</td>
-        `;
-        tbody.appendChild(row);
-      });
-
+      const renderTableRows = (data, numeroDeElementos, tbody) => {
+        data.data.slice(0, numeroDeElementos).forEach((item) => {
+          console.log(data)
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.name}</td>
+            <td>$${item.price}</td>
+            <td>${item.description}</td>
+          `;
+                tbody.appendChild(row);
+              });
+            };
+      renderTableRows(data, numeroDeElementos, tbody);
       table.appendChild(tbody);
 
       resultado.appendChild(table);
@@ -47,3 +48,17 @@ const  filtrar= () => {
       resultado.innerHTML = "Erro ao buscar dados.";
     });
 };
+
+const pesquisar = () => {
+  const priceMax = (document.getElementById("price").value)
+  
+  fetch(`https://fakerapi.it/api/v2/products?_price_max=${priceMax}`, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.data)
+    }).catch((error)=>{
+      console.log(`Erro: ${error}`)
+    })
+}
