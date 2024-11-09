@@ -1,18 +1,17 @@
-let saveData = []
+let saveData = [];
+let page = 1;
 
 const filtrar = () => {
-  
-  const numeroDeElementos = parseInt(document.getElementById
-    ("numeroDeItens").value) || 1;
+  const numeroDeElementos = parseInt(document.getElementById("numeroDeItens").value) || 1;
   const resultado = document.getElementById("resultado");
   resultado.innerHTML = "";
 
-  fetch(`https://fakerapi.it/api/v2/products?_quantity=${numeroDeElementos}`, {
+  fetch(`https://fakerapi.it/api/v2/products?_quantity=${numeroDeElementos}&_price_max=100.00`, {
     method: "GET",
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
+      console.log(data);
       const table = document.createElement("table");
       table.classList.add("table", "table-striped");
       const thead = document.createElement("thead");
@@ -26,30 +25,27 @@ const filtrar = () => {
       `;
       table.appendChild(thead);
 
-
       const tbody = document.createElement("tbody");
-      const renderTableRows = (data, numeroDeElementos, tbody) => {
-        saveData = []
-        data.data.slice(0, numeroDeElementos).forEach((item) => {
-          saveData.push({
-            name: item.name,
-            price: item.price,
-            description: item.description
-          });
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${item.name}</td>
-            <td>$${item.price}</td>
-            <td>${item.description}</td>
-          `;
-                tbody.appendChild(row);
-              });
-            };
-      renderTableRows(data, numeroDeElementos, tbody);
+
+      // Salva os dados e renderiza as linhas da tabela
+      saveData = data.data.map((item) => ({
+        name: item.name,
+        price: parseFloat(item.price),
+        description: item.description,
+      }));
+
+      saveData.forEach((item) => {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>$${item.price.toFixed(2)}</td>
+          <td>${item.description}</td>
+        `;
+        tbody.appendChild(row);
+      });
+
       table.appendChild(tbody);
-
       resultado.appendChild(table);
-
     })
     .catch((error) => {
       console.error("Erro ao buscar dados:", error);
@@ -57,15 +53,7 @@ const filtrar = () => {
     });
 };
 
-const pesquisar = () => {
-  const priceMax = (document.getElementById("price").value)
-  for ()
-  
-}
-//Scoll infinito
-let page = 1;
-
-function carregarMaisConteudo() {
+const carregarMaisConteudo = () => {
   const resultado = document.getElementById("resultado");
   const numeroDeElementos = 5; // Número de itens por página
 
@@ -74,43 +62,51 @@ function carregarMaisConteudo() {
   })
     .then(response => response.json())
     .then(data => {
+      console.log(data);
+
+      const tbody = document.querySelector("#resultado table tbody");
+
       data.data.forEach(item => {
-        const row = document.createElement("div");
-        row.classList.add("item", "mb-3", "p-2", "border");
+        const row = document.createElement("tr");
         row.innerHTML = `
-          <strong>Produto:</strong> ${item.name} <br>
-          <strong>Preço:</strong> $${item.price} <br>
-          <strong>Descrição:</strong> ${item.description}
+          <td>${item.name}</td>
+          <td>$${item.price.toFixed(2)}</td>
+          <td>${item.description}</td>
         `;
-        resultado.appendChild(row);
+        tbody.appendChild(row);
+
+        saveData.push({
+          name: item.name,
+          price: parseFloat(item.price),
+          description: item.description,
+        });
       });
+
       page++;
     })
     .catch(error => {
       console.error("Erro ao carregar mais conteúdo:", error);
     });
-}
+};
 
-function detectarScroll() {
-  
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const windowHeight = window.innerHeight;
-    const fullHeight = document.documentElement.scrollHeight;
-
-    console.log("Scroll detectado", scrollTop, windowHeight, fullHeight);
-
-    if (scrollTop + windowHeight >= fullHeight - 10) {
-      carregarMaisConteudo();
+const pesquisar = () => {
+  const priceMax = parseFloat(document.getElementById("price").value) || 0;
+  console.log("Preço máximo:", priceMax);
+  const rows = document.querySelectorAll("#resultado table tbody tr");
+  saveData.forEach((item, index) => {
+    const row = rows[index]; 
+    if (row && item.price <= priceMax) {
+      row.querySelectorAll("td").forEach((cell) => {
+        cell.style.backgroundColor = "#FF4C4C"; 
+        cell.style.color = "#FFFFFF"; 
+      });
+      console.log(`Linha ${index} com preço ${item.price} alterada para vermelho escuro.`);
+    } else if (row) {
+      row.querySelectorAll("td").forEach((cell) => {
+        cell.style.backgroundColor = ""; 
+        cell.style.color = ""; 
+      });
     }
-  
+  });
+};
 
-}
-
-// Carregar conteúdo inicial e configurar o scroll infinito
-window.addEventListener("load", () => {
-  filtrar();
-  carregarMaisConteudo();
-  window.addEventListener("scroll", detectarScroll);
-});
-
-console.log(saveData)
