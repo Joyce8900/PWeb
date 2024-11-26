@@ -1,10 +1,11 @@
-import Horario from "./Horario";
+import Button from "./Button";
 
 export default function Home() {
   return (
-    <div>
+    <div className="main">
       <h1> Viva Santana</h1>
-      <Horario/>
+      <Button/>
+      <h4>Boas Festas</h4>
     </div>
   )
 }
