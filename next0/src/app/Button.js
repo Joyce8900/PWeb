@@ -71,8 +71,6 @@ const Button = () => {
       attractions: "Padre Fábio de Melo",
     },
   ]
-
-
   const [exibir, setExibir] = useState(false) 
 
   return (
@@ -81,7 +79,7 @@ const Button = () => {
         Horários da Programação
       </button>
       {exibir && (
-        <table border="1" style={{ width: "100%", borderCollapse: "collapse" }}>
+        <table border="1" style={{height:'100px', width: "90%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               <th>Dia</th>
@@ -90,8 +88,8 @@ const Button = () => {
             </tr>
           </thead>
           <tbody>
-            {eventos.map(({day,event,attractions,index}) => (
-              <tr key={index}>
+            {eventos.map(({day,event,attractions}) => (
+              <tr key={attractions}>
                 <td>{day}</td>
                 <td>{event}</td>
                 <td>{attractions}</td>
