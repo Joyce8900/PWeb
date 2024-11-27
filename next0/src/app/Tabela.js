@@ -94,4 +94,4 @@ const Tabela = () => {
   )
 }
 
-export default Tabela
+export  {Tabela}

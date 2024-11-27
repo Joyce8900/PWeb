@@ -1,7 +1,6 @@
 "use client"
-
 import React, { useState } from "react"
-import Tabela from "./Tabela"
+import {Tabela} from "./Tabela"
 
 const Button = () => {
  
@@ -19,4 +18,4 @@ const Button = () => {
   )
 }
 
-export default Button
+export {Button}
