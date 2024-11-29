@@ -9,4 +9,6 @@ export default function Home() {
       <h4>Boas Festas</h4>
     </div>
   )
+
 }
+
