@@ -1,11 +1,13 @@
 import React from "react"
 import { MariaPrea } from "./MariaPrea"
-
+import { Separado } from "./Separado/page"
+import { Mensagens } from "./Mensagens"
 export default function Rota() {
   return (
     <>
-      <h1>Entrou</h1>
+      <Separado/>
       <MariaPrea/>
+      <Mensagens texto="Exibindo por Props"/>
     </>
   )
 }
