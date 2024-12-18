@@ -1,14 +1,30 @@
-import {Button} from "./Button";
+import Link from 'next/link'
 
-export default function Home() {
-  return (
-    <div>
-      
-      <h1> Viva Santana</h1>
-      <Button/>
-      <h4>Boas Festas</h4>
-    </div>
-  )
 
-}
 
+export default function Home(){
+
+    return (
+
+        <div>           
+
+            <div>
+
+                <h1>
+
+                    Viva Santana!
+
+                </h1>
+
+                <Link href="/novarota">Rota1</Link> <br/><br/>
+
+                <a href="/novarota">Rota 1, jeito antigo</a>
+
+            </div>
+
+        </div>       
+
+    )
+
+
+  }
