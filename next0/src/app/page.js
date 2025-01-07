@@ -1,29 +1,19 @@
 import Link from 'next/link'
-
-
+import { Button } from './Button'
 
 export default function Home(){
 
     return (
-
-        <div>           
-
-            <div>
-
-                <h1>
-
-                    Viva Santana!
-
-                </h1>
-
-                <Link href="/novarota">Rota1</Link> <br/><br/>
-
-                <a href="/novarota">Rota 1, jeito antigo</a>
-
-            </div>
-
-        </div>       
-
+      <div>
+        <div>
+          <h1>Viva Santana!</h1>
+          <Button />
+          <Link href="/Next1">Next1</Link> <br></br>
+          <a href="/Next2">Next2</a>
+          <br></br>
+          <a href="/movies"> Data fetching #1</a>
+        </div>
+      </div>
     )
 
 
