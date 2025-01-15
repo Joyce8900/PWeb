@@ -9,7 +9,7 @@ export default function Home() {
 
   async function handleAction(event) {
     setCarregando(true)
-    event.preventDefault() // Evita o comportamento padrão do formulário
+    event.preventDefault() 
 
     try {
       const httpRes = await fetch(
@@ -27,10 +27,7 @@ export default function Home() {
       setCarregando(false)
       setTitleSearchKey("")
     }
-     // Atualiza os resultados
-
-    // setTitleSearchKey("") // Reseta o estado do formulário após a busca
-    // setCarregando(false)
+     
   }
 
   return (
@@ -56,8 +53,8 @@ export function MovieForm({ handleAction, titleSearchKey, setTitleSearchKey , ca
       <input
         id="idTitleSearchKey"
         name="titleSearchKey"
-        value={titleSearchKey} // Sincroniza o valor com o estado
-        onChange={(e) => setTitleSearchKey(e.target.value)} // Atualiza o estado ao digitar
+        value={titleSearchKey} 
+        onChange={(e) => setTitleSearchKey(e.target.value)} 
         required
       />
       <button type="submit" disabled={carregando}>{carregando ? "Carregando..." : "Pesquisar"}</button>
