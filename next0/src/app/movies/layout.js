@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export const metadata = {
   title: "Next.js",
 
@@ -7,7 +9,8 @@ export default function RootLayout({ children }) {
   console.log("montando layout")
 
   return (
-    <html lang="en">
+
+    <html lang="en">     
       <body>{children}</body>
     </html>
   )

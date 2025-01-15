@@ -11,7 +11,8 @@ export default function Home(){
           <Link href="/Next1">Next1</Link> <br></br>
           <a href="/Next2">Next2</a>
           <br></br>
-          <a href="/movies"> Data fetching #1</a>
+          <a href="/movies"> Data fetching #1</a><br></br>
+          <a href="/clienteMovies1">Data Fetching e Client Components</a>
         </div>
       </div>
     )
