@@ -9,7 +9,7 @@ export default function Home() {
 
   async function handleAction(event) {
     setCarregando(true)
-    event.preventDefault() 
+    event.preventDefault()
 
     try {
       const httpRes = await fetch(
@@ -18,27 +18,26 @@ export default function Home() {
 
       const jsonRes = await httpRes.json()
       setResultMovies(jsonRes.Search || [])
-      
-      
     } catch (error) {
       console.error(error)
       setResultMovies([])
-    }finally {
+    } finally {
       setCarregando(false)
       setTitleSearchKey("")
     }
-     
   }
 
   return (
-    <div>
+    <div className="container my-5">
+      <h1 className="text-center text-primary mb-4">Pesquise Filmes no OMDB</h1>
       <MovieForm
         handleAction={handleAction}
         titleSearchKey={titleSearchKey}
         setTitleSearchKey={setTitleSearchKey}
+        carregando={carregando}
       />
       {carregando ? (
-        <div>Carregando...</div>
+        <div className="text-center my-3 text-info">Carregando...</div>
       ) : (
         <MovieTable movies={resultMovies} />
       )}
@@ -46,18 +45,38 @@ export default function Home() {
   )
 }
 
-export function MovieForm({ handleAction, titleSearchKey, setTitleSearchKey , carregando}) {
+export function MovieForm({
+  handleAction,
+  titleSearchKey,
+  setTitleSearchKey,
+  carregando,
+}) {
   return (
-    <form onSubmit={handleAction}>
-      <label htmlFor="idTitleSearchKey">Título</label>
-      <input
-        id="idTitleSearchKey"
-        name="titleSearchKey"
-        value={titleSearchKey} 
-        onChange={(e) => setTitleSearchKey(e.target.value)} 
-        required
-      />
-      <button type="submit" disabled={carregando}>{carregando ? "Carregando..." : "Pesquisar"}</button>
+    <form
+      onSubmit={handleAction}
+      className="mb-4 p-4 border rounded bg-light shadow"
+    >
+      <div className="mb-3 container bg-">
+        <label htmlFor="idTitleSearchKey" className="form-label fw-bold">
+          Digite o título do filme:
+        </label>
+        <input
+          id="idTitleSearchKey"
+          name="titleSearchKey"
+          value={titleSearchKey}
+          onChange={(e) => setTitleSearchKey(e.target.value)}
+          className="form-control"
+          placeholder="Exemplo: Batman"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        className={`btn ${carregando ? "btn-secondary" : "btn-primary"}`}
+        disabled={carregando}
+      >
+        {carregando ? "Pesquisando..." : "Pesquisar"}
+      </button>
     </form>
   )
 }
@@ -66,13 +85,24 @@ export function MovieTable({ movies }) {
   return (
     <div>
       {movies.length > 0 ? (
-        movies.map((m) => (
-          <div key={m.imdbID}>
-            {m.Title} --- {m.Year}
-          </div>
-        ))
+        <table className="table table-striped table-bordered shadow">
+          <thead className="table-dark">
+            <tr>
+              <th scope="col" className="text-center">Título</th>
+              <th scope="col">Ano</th>
+            </tr>
+          </thead>
+          <tbody>
+            {movies.map((m) => (
+              <tr key={m.imdbID}>
+                <td>{m.Title}</td>
+                <td>{m.Year}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
-        <div>Nenhum filme encontrado.</div>
+        <div className="text-center text-danger">Nenhum filme encontrado.</div>
       )}
     </div>
   )
