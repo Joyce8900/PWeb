@@ -1,7 +1,7 @@
 /* Resetando margens e padding para garantir um layout consistente */
 * {
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+  padding: 10px;
   box-sizing: border-box;
 }
 
