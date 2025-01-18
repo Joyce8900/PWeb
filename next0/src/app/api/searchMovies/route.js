@@ -1,13 +1,40 @@
 export async function GET(request) {
   const searchParams = request.nextUrl.searchParams
 
+  // Obtém parâmetros da query
   const titleSearchKey = searchParams.get("titleSearchKey")
+  const yearSearchKey = searchParams.get("yearSearchKey")
 
-  const httpRes = await fetch(
-    `http://www.omdbapi.com/?apikey=f1cbc41e&s=${titleSearchKey}`
-  )
+  
+  // URL da API PocketBase
+  const baseUrl = "http://127.0.0.1:8090/api/collections/movies/records"
 
-  const jsonRes = await httpRes.json()
+  // Filtro opcional baseado nos parâmetros
+  const filter = []
+  if (titleSearchKey) filter.push(`title~"${titleSearchKey}"`)
+  
 
-  return Response.json({ ...jsonRes })
+  const queryString = filter.length
+    ? `?filter=${encodeURIComponent(filter.join(" && "))}`
+    : ""
+
+  try {
+    // Busca dados na API PocketBase
+    const httpRes = await fetch(`${baseUrl}${queryString}`)
+    if (!httpRes.ok) {
+      throw new Error("Erro ao buscar dados da API PocketBase")
+    }
+
+    const jsonRes = await httpRes.json()
+
+    // Retorna os dados no formato JSON
+    return Response.json(jsonRes)
+  } catch (error) {
+    return Response.json(
+      { error: error.message },
+      {
+        status: 500,
+      }
+    )
+  }
 }
