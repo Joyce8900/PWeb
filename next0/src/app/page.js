@@ -18,6 +18,8 @@ export default function Home(){
           <a href="/clienteMovies1">Data Fetching e Client Components</a>
           <br></br>
           <a href="/clientComponent">Implementação de API</a>
+          <br></br>
+          <a href="/clientServerMovies">Server Actions #2</a>
         </div>
       </div>
     )
