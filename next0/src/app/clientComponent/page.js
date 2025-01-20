@@ -26,6 +26,15 @@ const page = async ({ searchParams }) => {
       <MovieFormApi />
       <a href="http://127.0.0.1:8090/api/collections/movies/records">Dados da api</a>
       {error && <div>Erro: {error}</div>}
+      {
+        movies.length === 0 && (
+          <div>
+            <h3>Erro: Nenhum filme encontrado.</h3>
+            <p>Por favor, consulte os filmes cadastrados.</p>
+
+          </div>
+        )
+      }
       {movies.length === 1 ? (
         <div>
           <h1>{movies[0].title}</h1>
