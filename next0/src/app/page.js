@@ -16,6 +16,7 @@ export default function Home(){
           <a href="/movies"> Data fetching #1</a>
           <br></br>
           <a href="/clienteMovies1">Data Fetching e Client Components</a>
+          <br></br>
           <a href="/clientComponent">Implementação de API</a>
         </div>
       </div>

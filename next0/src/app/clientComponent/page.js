@@ -24,22 +24,37 @@ const page = async ({ searchParams }) => {
   return (
     <div>
       <MovieFormApi />
-      <h4>Nesta Api só possui 3 filmes: Rambo, Batman e Forrest Gump</h4>
+      <a href="http://127.0.0.1:8090/api/collections/movies/records">Dados da api</a>
       {error && <div>Erro: {error}</div>}
+      {
+        movies.length === 0 && (
+          <div>
+            <h3>Erro: Nenhum filme encontrado.</h3>
+            <p>Por favor, consulte os filmes cadastrados.</p>
+
+          </div>
+        )
+      }
       {movies.length === 1 ? (
         <div>
           <h1>{movies[0].title}</h1>
           <h2>{movies[0].year}</h2>
-          <img src={movies[0].poster}
-           alt={movies[0].title} 
-           className="movie-poster" />
+          <img
+            src={movies[0].poster}
+            alt={movies[0].title}
+            className="movie-poster"
+          />
         </div>
       ) : (
         movies.map((movie) => (
           <div key={movie.id}>
             <h1>{movie.title}</h1>
             <h2>{movie.year}</h2>
-            <img src={movie.poster} alt={movie.title} className="movie-poster" />
+            <img
+              src={movie.poster}
+              alt={movie.title}
+              className="movie-poster"
+            />
           </div>
         ))
       )}
